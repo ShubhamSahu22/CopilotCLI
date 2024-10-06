@@ -1,0 +1,4 @@
+# Updated dependencies for mkdocs
+mkdocs-macros-plugin==0.8.0
+mkdocs-static-i18n==1.0.0
+mkdocs-redirects==1.4.0
