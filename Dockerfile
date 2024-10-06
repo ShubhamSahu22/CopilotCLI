@@ -1,18 +1,8 @@
-# Use the latest Go version
-FROM golang:1.21
+# Use the latest stable Nginx image
+FROM nginx:stable
 
-# Install Node.js 20.x (latest LTS as of October 2024)
-RUN apt-get update && apt-get install -y curl \
-  && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
-  && apt-get install -y nodejs \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/*
+# Copy the HTML file to the default Nginx directory
+COPY index.html /usr/share/nginx/html/
 
-WORKDIR /copilot
-COPY . .
-
-# Set Go proxy to direct
-RUN go env -w GOPROXY=direct
-
-# Build the binaries using Makefile
-RUN make release
+# Expose the default Nginx port
+EXPOSE 80
